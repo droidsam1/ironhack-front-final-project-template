@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "cypress:open": "cypress open",
-    "test": "npx cypress open",
+    "test": "npx cypress run --env baseUrl=http://127.0.0.1:5173/",
     "test:ci": "npx cypress run --spec **/*.features"
   },
   "dependencies": {

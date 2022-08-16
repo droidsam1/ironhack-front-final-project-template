@@ -38,5 +38,6 @@ export default defineConfig({
     specPattern: "**/*.feature",
     supportFile: false,
     setupNodeEvents,
+    baseUrl: "http://localhost:5173/",
   },
 });

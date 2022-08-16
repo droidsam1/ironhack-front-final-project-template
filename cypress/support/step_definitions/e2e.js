@@ -1,4 +1,4 @@
-Cypress.Commands.add("the", (testSelector) =>
+Cypress.Commands.add("theSelector", (testSelector) =>
   cy.get(`[data-test-${testSelector}]`)
 );
 Cypress.Commands.add("clickThe", (testSelector) => {
