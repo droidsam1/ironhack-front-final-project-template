@@ -29,3 +29,12 @@ onMounted(async () => {
   }
 });
 </script>
+<style>
+html,
+body {
+  height: 100%; /*both html and body*/
+}
+body {
+  margin: 0; /*reset default margin*/
+}
+</style>

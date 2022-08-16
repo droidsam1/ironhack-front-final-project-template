@@ -10,5 +10,11 @@ When("I visit landing page", () => {
 });
 
 Then("I should see a login page", () => {
-  cy.theSelector("login").contains("Login");
+  cy.the("login").contains("Sign in");
+});
+
+Then("I should see a login form", () => {
+  cy.the("input-email");
+  cy.the("input-password");
+  cy.the("login-button");
 });
