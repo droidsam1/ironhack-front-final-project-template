@@ -60,39 +60,101 @@ Here are the user stories you’ll need to consider to ensure that the app funct
 
 ### Authentication
 
-Copy
+<pre>Feature: Create an account  
+  Background: As a new user, I want to register with the to-do app
+    Given I do not have an account
 
-`   Feature: Create an account      Background: As a new user, I want to register with the to-do app      Given I do not have an account     Scenario: As a user, I want to create an account    When I visit the signup page    And I set the email to "test@example.co.uk"    And I set a password to "****"    And I set confirmPassword to "****"    And I click the register button    Then I expect to be shown a warning that instructs me to confirm my email address by clicking a link in an email    And I click the link provided in the email    Then I expect to be logged in to the app     And I expect to see the home screen         `
+Scenario: As a user, I want to create an account
+  When I visit the signup page
+  And I set the email to "test@example.co.uk"
+  And I set a password to "****"
+  And I set confirmPassword to "****"
+  And I click the register button
+  Then I expect to be shown a warning that instructs me to confirm my email address by clicking a link in an email
+  And I click the link provided in the email
+  Then I expect to be logged in to the app 
+  And I expect to see the home screen</pre>
 
-Copy
 
-`   Feature: Log in to the app    Background: As a user, I want to log in to the to-do app      Given I already have an account     Scenario: As a user, I want to log in to the app    When I visit the login page    And I enter my email as "test@example.co.uk"    And I enter my password as "****"    And I click the Log In button    Then I expect to be logged in to the app     And I expect to see the home screen         `
+<pre>Feature: Log in to the app
+  Background: As a user, I want to log in to the to-do app
+    Given I already have an account
 
-Copy
+Scenario: As a user, I want to log in to the app
+  When I visit the login page
+  And I enter my email as "test@example.co.uk"
+  And I enter my password as "****"
+  And I click the Log In button
+  Then I expect to be logged in to the app 
+  And I expect to see the home screen
+</pre>
 
-`   Feature: Log out from the app    Background: As a user, I want to be able to log out from the app      Given I am logged in to the app     Scenario: As a user, I want to log out    When I am viewing the home screen    And I click the log out button     Then I expect to be logged out of the app    And I expect to see the login page         `
+<pre>Feature: Log out from the app
+  Background: As a user, I want to be able to log out from the app
+    Given I am logged in to the app
+
+Scenario: As a user, I want to log out
+  When I am viewing the home screen
+  And I click the log out button 
+  Then I expect to be logged out of the app
+  And I expect to see the login page
+ </pre>
 
 ### App
 
-Copy
+<pre>Feature: Add a new task
+  Background: As a logged in user, I want to add a new task and have it appear on my to-do list
+    Given I am logged in
 
-`Feature: Add a new task    Background: As a logged in user, I want to add a new task and have it appear on my to-do list      Given I am logged in     Scenario: As a logged-in user I want to create a new task    When I visit the home screen    And I enter "My cool task" in the NewTask field    And I click the submit button    Then I expect to see "My cool task" in the To-Do list of tasks` 
+Scenario: As a logged-in user I want to create a new task
+  When I visit the home screen
+  And I enter "My cool task" in the NewTask field
+  And I click the submit button
+  Then I expect to see "My cool task" in the To-Do list of tasks
+  </pre>
+  
+<pre>Feature: Edit a task
+  Background: As a logged in user, I want to edit an existing task and have the app display the updated content
+    Given I have already created a task
 
-Copy
+Scenario: As a user, I want to edit the title of my task
+  When I locate the task I'd like to edit
+  And I click the corresponding Edit button to the task
+  Then I expect the title of the task to become editable
+  When I enter a new description for the task
+  And I click submit
+  Then I expect to see my updated task on the To-Do list
+</pre>
 
-`   Feature: Edit a task    Background: As a logged in user, I want to edit an existing task and have the app display the updated content      Given I have already created a task     Scenario: As a user, I want to edit the title of my task    When I locate the task I'd like to edit    And I click the corresponding Edit button to the task    Then I expect the title of the task to become editable    When I enter a new description for the task    And I click submit    Then I expect to see my updated task on the To-Do list         `
+<pre>Feature: Mark a task as complete
+  Background: As a logged in user, I want to be able to mark a task as complete and automatically move it to the completed section 
+    Given I have already created a task
 
-Copy
+Scenario: As a logged-in user I want to mark a task as complete
+  When I locate the task I'd like to mark as complete
+  And I click the corresponding done button to the task
+  Then I expect to see that my task has immediately been moved to the completed section
+ </pre>
 
-`   Feature: Mark a task as complete    Background: As a logged in user, I want to be able to mark a task as complete and automatically move it to the completed section       Given I have already created a task     Scenario: As a logged-in user I want to mark a task as complete    When I locate the task I'd like to mark as complete    And I click the corresponding done button to the task    Then I expect to see that my task has immediately been moved to the completed section         `
+<pre>Feature: Mark a task as incomplete
+  Background: As a logged in user, I want to be able to mark a task as incomplete and automatically move it back to the to-do section 
+    Given I have already created a task and marked it as complete
 
-Copy
+Scenario: As a logged-in user I want to mark a task as incomplete
+  When I locate the task I'd like to mark it as incomplete
+  And I click the corresponding incomplete button to the task
+  Then I expect to see that my task has immediately been moved to the to-do section
+ </pre>
 
-`   Feature: Mark a task as incomplete    Background: As a logged in user, I want to be able to mark a task as incomplete and automatically move it back to the to-do section       Given I have already created a task and marked it as complete     Scenario: As a logged-in user I want to mark a task as incomplete    When I locate the task I'd like to mark it as incomplete    And I click the corresponding incomplete button to the task    Then I expect to see that my task has immediately been moved to the to-do section         `
+<pre>Feature: Delete a task
+  Background: As a logged in user, I want to be able to permanently delete an existing task
+    Given I have already created a task
 
-Copy
-
-`   Feature: Delete a task    Background: As a logged in user, I want to be able to permanently delete an existing task      Given I have already created a task     Scenario: As a logged-in user I want to delete a task    When I locate the task I'd like to delete    And I click the corresponding delete button to the task    Then I expect to see that my task has been permanently removed from every list         `
+Scenario: As a logged-in user I want to delete a task
+  When I locate the task I'd like to delete
+  And I click the corresponding delete button to the task
+  Then I expect to see that my task has been permanently removed from every list
+</pre>
 
 Technical specifications
 ------------------------
@@ -111,7 +173,12 @@ Basic setup for Vue.js and Supabase:
 
 Copy
 
-`   $ yarn vite create "my-todo-project"  $ cd my-todo-project  $ yarn add @supabase/supabase-js  $ yarn add pinia  $ yarn add vue-router  $ yarn add pinia-plugin-persist         `
+<pre>$ yarn vite create "my-todo-project"  
+$ cd my-todo-project  
+$ yarn add @supabase/supabase-js  
+$ yarn add pinia  $ yarn add vue-router  
+$ yarn add pinia-plugin-persist
+</pre>
 
 Vue.js
 ------
@@ -145,7 +212,31 @@ Suggested file structure for the codebase (click to see)
 
 Copy
 
-`   ├── src  │   ├── App.vue  │   ├── assets  │   │   └── logo.png  │   ├── components  │   │   ├── AppHeader.vue  │   │   ├── Nav.vue  │   │   ├── NewTask.vue  │   │   ├── SignIn.vue  │   │   ├── SignUp.vue  │   │   └── TaskItem.vue  │   ├── main.js  │   ├── pages  │   │   ├── Auth.vue  │   │   └── Dashboard.vue  │   ├── router  │   │   └── index.js  │   ├── static  │   │   └── main.css  │   ├── store  │   │   ├── task.js  │   │   └── user.js  │   └── supabase.js  ├── vite.config.js  └── yarn.lock         `
+<pre>├── src
+│   ├── App.vue
+│   ├── assets
+│   │   └── logo.png
+│   ├── components
+│   │   ├── AppHeader.vue
+│   │   ├── Nav.vue
+│   │   ├── NewTask.vue
+│   │   ├── SignIn.vue
+│   │   ├── SignUp.vue
+│   │   └── TaskItem.vue
+│   ├── main.js
+│   ├── pages
+│   │   ├── Auth.vue
+│   │   └── Dashboard.vue
+│   ├── router
+│   │   └── index.js
+│   ├── static
+│   │   └── main.css
+│   ├── store
+│   │   ├── task.js
+│   │   └── user.js
+│   └── supabase.js
+├── vite.config.js
+└── yarn.lock</pre>
 
 Sample code
 -----------
@@ -156,25 +247,106 @@ We’ve provided some starter templates for you to use. You’ll need to expand 
 
 Here is a basic `user` store. We’ve only given you two actions: `fetchUser` and `signUp`. You’ll need to create `signIn` and `signOut`.
 
-Copy
 
-`   // /store/user.js     import { defineStore } from 'pinia';  import { supabase } from '../supabase';     export const useUserStore = defineStore('user', {    state: () => ({      user: null,    }),       actions: {      async fetchUser () {        const user = await supabase.auth.user();        this.user = user      },      async signUp (email, password) {        const { user, error } = await supabase.auth.signUp({          email: email,          password: password        });        if (error) throw error;        if (user) this.user = user;      },      persist: {        enabled: true,        strategies: [          {            key: 'user',            storage: localStorage          }        ]      },  });         `
+<pre>// /store/user.js
+
+import { defineStore } from 'pinia';
+import { supabase } from '../supabase';
+
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    user: null,
+  }),
+
+  actions: {
+    async fetchUser () {
+      const user = await supabase.auth.user();
+      this.user = user
+    },
+    async signUp (email, password) {
+      const { user, error } = await supabase.auth.signUp({
+        email: email,
+        password: password
+      });
+      if (error) throw error;
+      if (user) this.user = user;
+    },
+    persist: {
+      enabled: true,
+      strategies: [
+        {
+          key: 'user',
+          storage: localStorage
+        }
+      ]
+    },
+});
+</pre>
 
 ### `/store/task.js`
 
 Here is a basic `task` store. We’ve only given you one action: `fetchTasks`. You’ll need to create your own store actions to update, create and delete the tasks.
 
-Copy
 
-`// /store/task.js     import { defineStore } from 'pinia';  import { supabase } from '../supabase';     export const useTaskStore = defineStore('tasks', {    state: () => ({      tasks: null    }),    actions: {      async fetchTasks () {        const { data: tasks } = await supabase          .from('tasks')          .select('*')          .order('id', { ascending: false });        this.tasks = tasks;      }    }  });` 
+<pre>// /store/task.js
+
+import { defineStore } from 'pinia';
+import { supabase } from '../supabase';
+
+export const useTaskStore = defineStore('tasks', {
+  state: () => ({
+    tasks: null
+  }),
+  actions: {
+    async fetchTasks () {
+      const { data: tasks } = await supabase
+        .from('tasks')
+        .select('*')
+        .order('id', { ascending: false });
+      this.tasks = tasks;
+    }
+  }
+});
+
+</pre>
 
 ### App.js
 
 Instead of checking authentication on router change. We’ll be checking it at the root level of the app. This means that the user request is only fired once and not on every page load. Different (especially larger) apps may need a different strategy when dealing with authentication. We’ve provided you with a basic `App.js` that nests the other pages inside.
 
-Copy
+<pre>
+   <template>
+     <section>
+       <router-view class="app-main" /> <!-- your routes will load inside of these tags -->    
+     </section>
+   </template>
 
-`<template>    <section>      <router-view class="app-main" /> <!-- your routes will load inside of these tags -->        </section>  </template>     <script setup>  import { onMounted } from 'vue'  import { storeToRefs } from 'pinia'  import { useRouter } from 'vue-router'  import { useUserStore } from './store/user.js'     const router = useRouter()  const userStore = useUserStore()  const { user } = storeToRefs(userStore)     onMounted(async () => {    try {      await userStore.fetchUser() // here we call fetch user      if (!user.value) {        // redirect them to logout if the user is not there        router.push({ path: '/auth' });      } else {        // continue to dashboard        router.push({ path: '/' });      }    } catch (e) {      console.log(e)    }  })  </script>` 
+   <script setup>
+   import { onMounted } from 'vue'
+   import { storeToRefs } from 'pinia'
+   import { useRouter } from 'vue-router'
+   import { useUserStore } from './store/user.js'
+
+   const router = useRouter()
+   const userStore = useUserStore()
+   const { user } = storeToRefs(userStore)
+
+   onMounted(async () => {
+     try {
+       await userStore.fetchUser() // here we call fetch user
+       if (!user.value) {
+         // redirect them to logout if the user is not there
+         router.push({ path: '/auth' });
+       } else {
+         // continue to dashboard
+         router.push({ path: '/' });
+       }
+     } catch (e) {
+       console.log(e)
+     }
+   })
+   </script>
+</pre>
 
 Code standards & “gotchas”
 --------------------------
