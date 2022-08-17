@@ -6,19 +6,10 @@
       <div>
         <div class="p-1 text-center text-3xl">🗒️✏️</div>
         <h2
-          data-test-login
           class="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900"
         >
-          Sign in
+          Register here 👇
         </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          You don't have an account?
-          <router-link to="/register" data-test-register-link>
-            <span class="font-medium text-indigo-600 hover:text-indigo-500">
-              Register
-            </span>
-          </router-link>
-        </p>
       </div>
       <form class="mt-8 space-y-6" action="#" method="POST">
         <input type="hidden" name="remember" value="true" />
@@ -27,18 +18,20 @@
             <label for="email-address" class="sr-only">Email address</label>
             <input
               data-test-input-email
+              v-model="inputMail"
               id="email-address"
               name="email"
               type="email"
               autocomplete="email"
               required=""
               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Email address"
+              placeholder="Your email address"
             />
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
             <input
+              v-model="inputPassword"
               data-test-input-password
               id="password"
               name="password"
@@ -46,18 +39,33 @@
               autocomplete="current-password"
               required=""
               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Password"
+              placeholder="A strong password"
+            />
+          </div>
+
+          <div v-if="inputPassword">
+            <label for="password-confirm" class="sr-only">Password</label>
+            <input
+              data-test-input-password-confirm
+              id="password-confirm"
+              name="password-confirm"
+              type="password"
+              autocomplete="current-password-confirm"
+              required=""
+              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Repeat the password here"
             />
           </div>
         </div>
 
         <div>
           <button
-            data-test-login-button
+            @click.prevent="submit"
+            data-test-register-button
             type="submit"
             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Sign in
+            Register
           </button>
         </div>
       </form>
@@ -65,4 +73,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { computed } from "vue";
+
+const inputMail = ref("");
+const inputPassword = ref("");
+const confirmPassword = ref("");
+
+const passwordsMatch = computed(() => {
+  return inputPassword === confirmPassword;
+});
+
+const submit = () => {};
+</script>
