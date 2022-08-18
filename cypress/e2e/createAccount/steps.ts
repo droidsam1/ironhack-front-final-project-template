@@ -28,3 +28,10 @@ And("I set confirmPassword to {string}", (password: string) => {
 And("I click the register button", () => {
   locateSelector("register-button").click();
 });
+
+Then(
+  "I expect to be shown a warning that instructs me to confirm my email address by clicking a link in an email",
+  () => {
+    locateSelector("modal");
+  }
+);
