@@ -7,6 +7,9 @@ export const useUserStore = defineStore("user", {
   state: () => ({
     user: null,
   }),
+  getters: {
+    userName: (state) => state.user?.user_metadata.name ?? state.user?.email,
+  },
 
   actions: {
     async fetchUser() {
@@ -21,7 +24,14 @@ export const useUserStore = defineStore("user", {
       if (error) throw error;
       if (user) this.user = user;
     },
-    // Hacer sign in
+    async singIn(email, password) {
+      const { user, session, error } = await supabase.auth.signIn({
+        email: email,
+        password: password,
+      });
+      if (error) throw error;
+      if (user) this.user = user;
+    },
     // Hacer log out
     persist: {
       enabled: true,
