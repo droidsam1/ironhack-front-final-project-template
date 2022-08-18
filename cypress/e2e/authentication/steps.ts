@@ -1,4 +1,5 @@
 import { When, Then, Given } from "@badeball/cypress-cucumber-preprocessor";
+import { locateSelector } from "../../support/step_definitions/e2e";
 const { visit } = cy;
 
 Given("I can visit the main page", () => {
@@ -10,11 +11,11 @@ When("I visit landing page", () => {
 });
 
 Then("I should see a login page", () => {
-  cy.the("login").contains("Sign in");
+  locateSelector("login").contains("Sign in");
 });
 
 Then("I should see a login form", () => {
-  cy.the("input-email");
-  cy.the("input-password");
-  cy.the("login-button");
+  locateSelector("input-email");
+  locateSelector("input-password");
+  locateSelector("login-button");
 });

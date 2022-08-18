@@ -4,25 +4,27 @@ import {
   Given,
   And,
 } from "@badeball/cypress-cucumber-preprocessor";
+
+import { clickThe, locateSelector } from "../../support/step_definitions/e2e";
 const { visit } = cy;
 
 Then("I visit the register page", () => {
   visit("/");
-  cy.clickThe("register-link");
+  clickThe("register-link");
 });
 
-And("I set the email to {string}", (user) => {
-  cy.the("input-email").type(user);
+And("I set the email to {string}", (user: string) => {
+  locateSelector("input-email").type(user);
 });
 
-And("I set a password to {string}", (password) => {
-  cy.the("input-password").type(password);
+And("I set a password to {string}", (password: string) => {
+  locateSelector("input-password").type(password);
 });
 
-And("I set confirmPassword to {string}", (password) => {
-  cy.the("input-password-confirm").type(password);
+And("I set confirmPassword to {string}", (password: string) => {
+  locateSelector("input-password-confirm").type(password);
 });
 
 And("I click the register button", () => {
-  cy.the("register-button").click();
+  locateSelector("register-button").click();
 });
