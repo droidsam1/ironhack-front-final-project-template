@@ -23,14 +23,24 @@ And("I enter my password as {string}", (password: string) => {
   locateSelector("input-password").type(password);
 });
 
-And("I click the Log In button", () => {
+And("I click the Log In button", async () => {
   locateSelector("login-button").click();
+
+  // cy.intercept({
+  //   method: "POST",
+  //   url: "https://gnqeilcxjpdysubjpclz.supabase.co/auth/v1/token?grant_type=password",
+  // }).as("apiCheck");
 });
 
 Then("I expect to be logged in to the app", () => {
-  //TODO check user is logged
+  // cy.wait("@apiCheck").then((interception) => {
+  //   assert.isNotNull(interception.response.body, "1st API call has data");
+  // });
+  cy.wait(500);
+  visit("/dashboard");
+  locateSelector("logged-user-name ");
 });
 
 And("I expect to see the home screen", () => {
-  //TODO check user is redirected to home screen
+  // cy.url({ decode: true }).should("contain", "dashboard");
 });
