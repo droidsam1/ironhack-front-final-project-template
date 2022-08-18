@@ -35,3 +35,15 @@ Then(
     locateSelector("modal");
   }
 );
+
+And("I click the link provided in the email", () => {
+  //TODO: review can I test user received a mail?
+});
+
+Then("I expect to be logged in to the app", () => {
+  //TODO check user is logged
+});
+
+And("I expect to see the home screen", () => {
+  //TODO check user is redirected to home screen
+});
