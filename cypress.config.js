@@ -23,6 +23,15 @@ async function setupNodeEvents(on, config) {
                 },
               ],
             },
+            {
+              test: /\.ts$/,
+              exclude: [/node_modules/],
+              use: [
+                {
+                  loader: "ts-loader",
+                },
+              ],
+            },
           ],
         },
       },
