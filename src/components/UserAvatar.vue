@@ -3,7 +3,7 @@
     <transition name="slide-fade">
       <span
         data-test-logged-user-name
-        v-if="showUserNameOnHover"
+        v-show="showUserNameOnHover"
         class="font-medium text-gray-600 dark:text-gray-300 mr-2"
         >{{ userName }}</span
       >
