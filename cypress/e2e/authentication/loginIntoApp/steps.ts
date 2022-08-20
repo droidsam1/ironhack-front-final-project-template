@@ -4,11 +4,11 @@ import {
   And,
   Then,
 } from "@badeball/cypress-cucumber-preprocessor";
-import { locateSelector } from "../../support/step_definitions/e2e";
+import { locateSelector } from "../../../support/step_definitions/e2e";
 import {
   interceptApiCall,
   waitForApiAResponse,
-} from "../../support/step_definitions/supabaseApi";
+} from "../../../support/step_definitions/supabaseApi";
 
 const { visit } = cy;
 
@@ -35,7 +35,6 @@ And("I click the Log In button", async () => {
 
 Then("I expect to be logged in to the app", () => {
   waitForApiAResponse();
-  // visit("/dashboard");
   locateSelector("logged-user-name ").should("contain", "Testing user");
 });
 

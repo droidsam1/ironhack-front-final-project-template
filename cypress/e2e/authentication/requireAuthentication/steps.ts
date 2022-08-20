@@ -1,5 +1,5 @@
 import { When, Then, Given } from "@badeball/cypress-cucumber-preprocessor";
-import { locateSelector } from "../../support/step_definitions/e2e";
+import { locateSelector } from "../../../support/step_definitions/e2e";
 const { visit } = cy;
 
 Given("I can visit the main page", () => {

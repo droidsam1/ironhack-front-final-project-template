@@ -5,7 +5,7 @@ import {
   And,
 } from "@badeball/cypress-cucumber-preprocessor";
 
-import { clickThe, locateSelector } from "../../support/step_definitions/e2e";
+import { clickThe, locateSelector } from "../../../support/step_definitions/e2e";
 const { visit } = cy;
 
 Then("I visit the register page", () => {
