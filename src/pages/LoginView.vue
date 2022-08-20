@@ -71,6 +71,7 @@
 <script setup>
 import { ref } from "vue";
 import { useUserStore } from "../store/user";
+import router from "../router/index";
 
 const userStore = useUserStore();
 
@@ -79,5 +80,6 @@ let password = ref("");
 
 const singIn = async () => {
   await userStore.singIn(email.value, password.value);
+  router.go("/");
 };
 </script>

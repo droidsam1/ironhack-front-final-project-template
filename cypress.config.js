@@ -49,4 +49,7 @@ export default defineConfig({
     setupNodeEvents,
     baseUrl: "http://localhost:5173/",
   },
+  env: {
+    SUPABASE_HOST: "gnqeilcxjpdysubjpclz.supabase.co",
+  },
 });
