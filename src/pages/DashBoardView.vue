@@ -1,7 +1,13 @@
 <template>
-  <HeaderLoggedUser />
-  <div class="container mt-4 mx-auto">
-    <TaskComponent />
+  <div class="flex flex-start flex-col md:flex-row">
+    <aside class="left-0 top-0 md:h-screen p-4 mt-10">
+      <SideBar />
+    </aside>
+    <main class="flex-1 p-3 py-2">
+      <div>
+        <TaskElement />
+      </div>
+    </main>
   </div>
 </template>
 
@@ -11,10 +17,11 @@ import { useUserStore } from "../store/user";
 const userStore = useUserStore();
 
 import { storeToRefs } from "pinia";
-import TaskComponent from "../components/TaskComponent.vue";
+import TaskElement from "../components/TaskElement.vue";
 import HeaderLoggedUser from "../components/HeaderLoggedUser.vue";
+import SideBar from "../components/SideBar.vue";
 
 const { userName } = storeToRefs(userStore);
 </script>
 
-<style></style>
+<style scoped></style>

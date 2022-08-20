@@ -1,4 +1,5 @@
 <template>
+  <HeaderLoggedUser />
   <section>
     <router-view class="app-main" />
   </section>
@@ -9,6 +10,7 @@ import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useUserStore } from "./store/user.js";
+import HeaderLoggedUser from "./components/HeaderLoggedUser.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
