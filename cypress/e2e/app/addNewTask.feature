@@ -5,5 +5,5 @@ Feature: Add a new task
     Scenario: As a logged-in user I want to create a new task
         When I visit the home screen
         And I enter "My cool task" in the NewTask field
-        # And I click the submit button
-        # Then I expect to see "My cool task" in the To-Do list of tasks
+        And I click the submit button
+# Then I expect to see "My cool task" in the To-Do list of tasks

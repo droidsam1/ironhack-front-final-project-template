@@ -8,3 +8,7 @@ And("I enter {string} in the NewTask field", (task: string) => {
   locateSelector("new-task-button").click();
   locateSelector("new-task-input").type(task);
 });
+
+And("I click the submit button", () => {
+  locateSelector("new-task-submit").click();
+});
