@@ -87,6 +87,9 @@ import { ref } from "vue";
 import { computed } from "vue";
 import router from "../router/index";
 import ModalVerticalVue from "../components/ModalVertical.vue";
+import { useUserStore } from "../store/user";
+
+const userStore = useUserStore();
 
 const header = " 👉 Check your inbox!! ✉️";
 const body = "You only have to confirm your email address and that's it";
@@ -106,10 +109,10 @@ const errorInput = computed(() => {
     : "focus:ring-indigo-500 focus:border-indigo-500  ";
 });
 
-const submit = () => {
+const submit = async () => {
   const form = document.querySelector("form");
   if (form.checkValidity() && passwordsMatch.value) {
-    //form.submit();
+    await userStore.signUp(inputMail.value, inputPassword.value);
     showModal.value = true;
   } else {
     form.reportValidity();

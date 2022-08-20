@@ -5,8 +5,20 @@ import {
   And,
 } from "@badeball/cypress-cucumber-preprocessor";
 
-import { clickThe, locateSelector } from "../../../support/step_definitions/e2e";
+import {
+  clickThe,
+  locateSelector,
+} from "../../../support/step_definitions/e2e";
+import {
+  interceptApiCall,
+  waitForApiAResponse,
+} from "../../../support/step_definitions/supabaseApi";
+
 const { visit } = cy;
+
+Given("I do not have an account", () => {
+  interceptApiCall();
+});
 
 Then("I visit the register page", () => {
   visit("/");
@@ -33,6 +45,7 @@ Then(
   "I expect to be shown a warning that instructs me to confirm my email address by clicking a link in an email",
   () => {
     locateSelector("modal");
+    locateSelector("modal-button").click();
   }
 );
 
@@ -41,9 +54,14 @@ And("I click the link provided in the email", () => {
 });
 
 Then("I expect to be logged in to the app", () => {
-  //TODO check user is logged
+  waitForApiAResponse();
+  //TODO: to perform this step the following is needed:
+  //* delete the user when finish
+  //* be able to obtain the generated mail and use it to confirm user
+  // locateSelector("logged-user-name").should("contain", "Testing user");
 });
 
 And("I expect to see the home screen", () => {
-  //TODO check user is redirected to home screen
+  //cy.url().should("contain", "/dashboard");
+  cy.url().should("contain", "/auth");
 });
