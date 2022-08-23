@@ -25,6 +25,8 @@ import TaskList from "../components/TaskList.vue";
 
 const { userName } = storeToRefs(userStore);
 const { tasks } = storeToRefs(taskStore);
+
+taskStore.fetchTasks();
 </script>
 
 <style scoped></style>

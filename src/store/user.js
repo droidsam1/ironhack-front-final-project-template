@@ -9,6 +9,7 @@ export const useUserStore = defineStore("user", {
   }),
   getters: {
     userName: (state) => state.user?.user_metadata.name ?? state.user?.email,
+    userId: (state) => state.user?.id,
   },
 
   actions: {

@@ -4,7 +4,9 @@
       You have no more pending tasks, 📋✔️
     </h3>
   </div>
-  <TaskElement />
+  <div data-test-task-list>
+    <TaskElement v-for="task in tasks" v-bind:key="task.id" :task="task" />
+  </div>
 </template>
 
 <script setup>

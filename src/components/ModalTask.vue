@@ -9,6 +9,7 @@
             >Your new pending task 📋</label
           >
           <textarea
+            v-model="taskTitle"
             data-test-new-task-input
             id="message"
             rows="4"
@@ -35,23 +36,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    header: String,
-    body: String,
-    footer: String,
-    buttonMessage: String,
-    showModal: Boolean,
-  },
-  methods: {
-    submit() {
-      this.$emit("submit");
-    },
-    cancel() {
-      this.$emit("close");
-    },
-  },
+<script setup>
+import { ref } from "vue";
+
+let taskTitle = ref("");
+const emit = defineEmits(["submit", "close"]);
+
+const submit = () => {
+  emit("submit", taskTitle.value);
+};
+const cancel = () => {
+  emit("close");
 };
 </script>
 

@@ -8,15 +8,36 @@
     >
       Add New Task ✏️
     </button>
-    <ModalTask @close="showInput = !showInput" v-show="showInput" />
+    <ModalTask
+      @submit="submit"
+      @close="showInput = !showInput"
+      v-show="showInput"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import ModalTask from "./ModalTask.vue";
+import { storeToRefs } from "pinia";
+import { useTaskStore } from "../store/task";
+import Task from "../interfaces/Task";
+import generateRandomTaskId from "../utils/idUtils";
+import { useUserStore } from "../store/user";
+
+const userStore = useUserStore();
+
+const { userId } = storeToRefs(userStore);
 
 const showInput = ref(false);
+
+const taskStore = useTaskStore();
+
+const submit = async (taskTitle) => {
+  const task = new Task(generateRandomTaskId(), taskTitle, false, userId.value);
+  await taskStore.createTask(task);
+  showInput.value = false;
+};
 </script>
 
 <style></style>
