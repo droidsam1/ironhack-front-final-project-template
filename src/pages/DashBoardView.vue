@@ -26,6 +26,7 @@ import TaskList from "../components/TaskList.vue";
 const { userName } = storeToRefs(userStore);
 const { tasks } = storeToRefs(taskStore);
 
+//TODO cambiar esta llamada para esperar a tener un usuario?
 taskStore.fetchTasks();
 </script>
 
