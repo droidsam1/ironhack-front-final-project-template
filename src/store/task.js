@@ -2,18 +2,26 @@
 
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
-
+import Task from "../interfaces/Task";
 export const useTaskStore = defineStore("tasks", {
   state: () => ({
-    tasks: null,
+    tasks: [],
   }),
   actions: {
     async fetchTasks() {
-      const { data: tasks } = await supabase
+      const { data: tasks, error } = await supabase
         .from("tasks")
         .select("*")
         .order("id", { ascending: false });
-      this.tasks = tasks;
+      if (error) throw error;
+      if (tasks) this.tasks = tasks;
+    },
+    async createTask(task) {
+      const { data, error } = await supabase
+        .from("tasks")
+        .insert([{ title: task.title }]);
+      if (error) throw error;
+      if (data) console.log(data);
     },
     // Hacer POST
     // Hacer el PUT (edit)
