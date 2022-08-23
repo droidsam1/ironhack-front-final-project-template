@@ -5,7 +5,7 @@
     </aside>
     <main class="flex-1 p-3 py-2">
       <div>
-        <TaskElement />
+        <TaskList />
       </div>
     </main>
   </div>
@@ -17,9 +17,9 @@ import { useUserStore } from "../store/user";
 const userStore = useUserStore();
 
 import { storeToRefs } from "pinia";
-import TaskElement from "../components/TaskElement.vue";
 import HeaderLoggedUser from "../components/HeaderLoggedUser.vue";
 import SideBar from "../components/SideBar.vue";
+import TaskList from "../components/TaskList.vue";
 
 const { userName } = storeToRefs(userStore);
 </script>

@@ -6,4 +6,4 @@ Feature: Add a new task
         When I visit the home screen
         And I enter "My cool task" in the NewTask field
         And I click the submit button
-# Then I expect to see "My cool task" in the To-Do list of tasks
+        Then I expect to see "My cool task" in the To-Do list of tasks

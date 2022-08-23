@@ -1,4 +1,4 @@
-import { When, And } from "@badeball/cypress-cucumber-preprocessor";
+import { When, And, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { locateSelector } from "../../../support/step_definitions/e2e";
 
 When("I visit the home screen", () => {
@@ -11,4 +11,8 @@ And("I enter {string} in the NewTask field", (task: string) => {
 
 And("I click the submit button", () => {
   locateSelector("new-task-submit").click();
+});
+
+Then("I expect to see {string} in the To-Do list of tasks", (task: string) => {
+  locateSelector("task-list").should("contain", "task");
 });
