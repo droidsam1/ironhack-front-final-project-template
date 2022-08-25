@@ -5,7 +5,12 @@
     </h3>
   </div>
   <div data-test-task-list>
-    <TaskElement v-for="task in tasks" v-bind:key="task.id" :task="task" />
+    <TaskElement
+      v-for="task in tasks"
+      v-bind:key="task.id"
+      :task="task"
+      @deleteTask="deleteTask"
+    />
   </div>
 </template>
 
@@ -14,6 +19,12 @@ import TaskElement from "./TaskElement.vue";
 const props = defineProps({
   tasks: Array,
 });
+
+const emit = defineEmits(["deleteTask"]);
+
+function deleteTask(task) {
+  emit("deleteTask", task);
+}
 </script>
 
 <style></style>

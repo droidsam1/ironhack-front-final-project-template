@@ -31,7 +31,7 @@ export default {
     header: String,
     body: String,
     footer: String,
-    buttonMessage: String,
+    buttonMessage: { type: String, default: "OK" },
     showModal: Boolean,
   },
   methods: {

@@ -1,4 +1,9 @@
-import { Given, When, And } from "@badeball/cypress-cucumber-preprocessor";
+import {
+  Given,
+  When,
+  And,
+  Then,
+} from "@badeball/cypress-cucumber-preprocessor";
 import { locateSelector } from "../../../support/step_definitions/e2e";
 import { waitForApiAResponse } from "../../../support/step_definitions/supabaseApi";
 
@@ -23,3 +28,10 @@ And("I click the corresponding delete button to the task", () => {
     .find(`[data-test-delete-task-button]`)
     .click();
 });
+
+Then(
+  "I expect to see that my task has been permanently removed from every list",
+  () => {
+    locateSelector("task-list").should("not.contain", taskTitle);
+  }
+);

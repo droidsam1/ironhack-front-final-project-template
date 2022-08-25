@@ -38,6 +38,19 @@ export const useTaskStore = defineStore("tasks", {
       if (error) throw error;
       if (data) this.tasks = [...this.tasks, data[0]];
     },
+    async deleteTask(task) {
+      const taskToBeDeleted = task;
+      this.tasks = [...this.tasks].filter((t) => t.id !== taskToBeDeleted.id);
+
+      const { data, error } = await supabase
+        .from("tasks")
+        .delete()
+        .match({ id: task.id });
+      if (error) {
+        this.tasks = [...this.tasks, taskToBeDeleted];
+        throw error;
+      }
+    },
     // Hacer POST
     // Hacer el PUT (edit)
     // Hacer el delete

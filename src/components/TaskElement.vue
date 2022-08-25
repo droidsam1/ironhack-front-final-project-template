@@ -27,6 +27,7 @@
         </div>
 
         <strong
+          @click="deleteTask"
           data-test-delete-task-button
           class="text-xl ml-2 align-center cursor-pointer alert-del"
           >&times;</strong
@@ -38,9 +39,14 @@
 
 <script setup>
 import Task from "../interfaces/Task";
-defineProps({
+const props = defineProps({
   task: Task,
 });
+const emit = defineEmits(["deleteTask"]);
+
+function deleteTask() {
+  emit("deleteTask", props.task);
+}
 </script>
 
 <style></style>
