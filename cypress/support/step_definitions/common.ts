@@ -17,6 +17,6 @@ Given("I have already created a task", () => {
   waitForApiAResponse();
 });
 
-When("I locate the task I'd like to (delete)", () => {
+When("I locate the task I'd like to (delete)(mark as complete)", () => {
   locateSelector("task-list").should("contain", aSampleTaskTitle);
 });

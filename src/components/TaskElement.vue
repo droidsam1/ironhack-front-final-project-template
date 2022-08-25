@@ -11,6 +11,7 @@
       <div class="m-3 flex flex-row items-center">
         <div class="text-sm inline rounded-full px-2">
           <input
+            data-test-done-task-button
             v-model="task.isCompleted"
             :checked="task.isCompleted"
             id="green-checkbox"
