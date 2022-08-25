@@ -1,4 +1,4 @@
-import { Given } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, When } from "@badeball/cypress-cucumber-preprocessor";
 import { loginWithTestingUser, locateSelector } from "./e2e";
 import { interceptApiCall, waitForApiAResponse } from "./supabaseApi";
 import aSampleTaskTitle from "../fixtures/TaskFixtures";
@@ -15,4 +15,8 @@ Given("I have already created a task", () => {
   locateSelector("new-task-input").type(aSampleTaskTitle);
   locateSelector("new-task-submit").click();
   waitForApiAResponse();
+});
+
+When("I locate the task I'd like to (delete)", () => {
+  locateSelector("task-list").should("contain", aSampleTaskTitle);
 });
