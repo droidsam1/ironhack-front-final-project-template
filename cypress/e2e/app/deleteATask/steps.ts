@@ -6,16 +6,9 @@ import {
 } from "@badeball/cypress-cucumber-preprocessor";
 import { locateSelector } from "../../../support/step_definitions/e2e";
 import { waitForApiAResponse } from "../../../support/step_definitions/supabaseApi";
+import aSampleTaskTitle from "../../../support/fixtures/TaskFixtures";
 
-const taskTitle = "A task to be deleted";
-
-Given("I have already created a task", () => {
-  cy.visit("/dashboard");
-  locateSelector("new-task-button").click();
-  locateSelector("new-task-input").type(taskTitle);
-  locateSelector("new-task-submit").click();
-  waitForApiAResponse();
-});
+const taskTitle = aSampleTaskTitle;
 
 When("I locate the task I'd like to delete", () => {
   locateSelector("task-list").should("contain", taskTitle);
