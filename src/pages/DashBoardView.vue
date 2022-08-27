@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-start flex-col lg:flex-row">
     <aside class="left-0 top-0 lg:h-screen p-4 mt-10">
-      <SideBar @create-task="createTask" />
+      <SideBar @create-task="createTask" @delete-all-tasks="deleteAllTasks" />
     </aside>
     <main
       class="flex-1 p-3 py-2 flex flex-col md:flex-row justify-around mt-10"
@@ -70,6 +70,11 @@ const createTask = async (taskTitle) => {
   );
 
   await taskStore.createTask(newTask);
+};
+
+const deleteAllTasks = async () => {
+  const { userId } = storeToRefs(userStore);
+  await taskStore.deleteAllTasks(userId.value);
 };
 
 const deleteTask = async (task) => {
