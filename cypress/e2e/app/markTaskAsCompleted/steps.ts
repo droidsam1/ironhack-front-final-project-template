@@ -1,15 +1,14 @@
 import { And, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { locateSelector } from "../../../support/step_definitions/helpers/actions";
+import {
+  locateSelector,
+  markTaskAsDone,
+} from "../../../support/step_definitions/helpers/actions";
 import aSampleTaskTitle from "../../../support/fixtures/TaskFixtures";
 
 const taskTitle = aSampleTaskTitle;
 
 And("I click the corresponding done button to the task", () => {
-  locateSelector("task-list")
-    .contains(taskTitle)
-    .parent()
-    .find(`[data-test-done-task-button]`)
-    .click();
+  markTaskAsDone(taskTitle);
 });
 
 Then(
