@@ -2,9 +2,6 @@ import { When, And, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { locateSelector } from "../../../support/step_definitions/helpers/actions";
 import { waitForApiAResponse } from "../../../support/step_definitions/helpers/supabaseApi";
 
-When("I visit the home screen", () => {
-  cy.visit("/dashboard");
-});
 And("I enter {string} in the NewTask field", (task: string) => {
   locateSelector("new-task-button").click();
   locateSelector("new-task-input").type(task);

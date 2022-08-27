@@ -17,3 +17,7 @@ Given("I have already created a task", () => {
 When("I locate the task I'd like to (delete)(mark as complete)", () => {
   locateSelector("task-list").should("contain", aSampleTaskTitle);
 });
+
+When("I visit the home screen", () => {
+  cy.visit("/dashboard");
+});
