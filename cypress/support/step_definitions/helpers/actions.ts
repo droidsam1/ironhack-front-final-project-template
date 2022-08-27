@@ -17,6 +17,7 @@ const loginIntoApp = async () => {
   interceptApiCall();
   loginWithTestingUser();
   waitForApiAResponse();
+  deleteAllTasks();
 };
 
 const createASampleTask = (taskTitle: string) => {
@@ -25,6 +26,11 @@ const createASampleTask = (taskTitle: string) => {
   locateSelector("new-task-input").type(taskTitle);
   locateSelector("new-task-submit").click();
   waitForApiAResponse();
+};
+
+const deleteAllTasks = () => {
+  cy.visit("/dashboard");
+  locateSelector("delete-all-tasks-button").click();
 };
 
 const toggleDoneTask = (taskTitle: string) => {
@@ -66,4 +72,5 @@ export {
   theInCompletedTaskSection,
   clickTheEditButton,
   locateTheTask,
+  deleteAllTasks,
 };
