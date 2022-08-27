@@ -1,7 +1,8 @@
 <template>
   <div v-if="task && task.title">
     <div
-      class="min-width-400 card m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200 flex flex-row items-center justify-between"
+      :class="{ isCompleted: task.isCompleted }"
+      class="min-width-task m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200 flex flex-row items-center justify-between"
     >
       <p
         class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200 ml-2"
@@ -9,20 +10,20 @@
         {{ task.title }}
       </p>
       <div class="m-3 flex flex-row items-center">
-        <div class="text-sm inline rounded-full px-2">
+        <div
+          class="text-sm inline rounded-full px-2 flex flex-row items-center"
+        >
           <input
             data-test-done-task-button
-            v-model="task.isCompleted"
-            :checked="task.isCompleted"
             @click="toggleTaskCompleted"
-            id="green-checkbox"
+            :checked="task.isCompleted"
+            :id="'green-checkbox-' + task.id"
             type="checkbox"
-            value=""
             class="w-4 h-4 text-green-600 bg-gray-100 rounded border-gray-300 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
           />
           <label
             v-if="task.isCompleted"
-            for="green-checkbox"
+            :for="'green-checkbox-' + task.id"
             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >Completed</label
           >
@@ -63,7 +64,7 @@
     @submit="editTask"
     @close="showModal = !showModal"
     v-if="showModal"
-    :task="props.task"
+    :task="task"
   />
 </template>
 
@@ -99,7 +100,15 @@ const editTask = (newTaskTitle) => {
 </script>
 
 <style scoped>
-.min-width-400 {
-  min-width: 400px;
+.min-width-task {
+  min-width: 250px;
+}
+.isCompleted {
+  border: 1px solid #999999;
+  background-color: rgba(169, 169, 169, 0.704);
+}
+.isCompleted > p {
+  text-decoration: line-through;
+  filter: grayscale(100%);
 }
 </style>
