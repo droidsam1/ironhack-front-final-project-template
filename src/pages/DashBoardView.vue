@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-start flex-col lg:flex-row">
-    <aside class="left-0 top-0 md:h-screen p-4 mt-10">
-      <SideBar />
+    <aside class="left-0 top-0 lg:h-screen p-4 mt-10">
+      <SideBar @create-task="createTask" />
     </aside>
     <main
-      class="flex-1 p-3 py-2 flex flex-col lg:flex-row justify-around mt-10"
+      class="flex-1 p-3 py-2 flex flex-col md:flex-row justify-around mt-10"
     >
       <div data-test-task-list-pending>
         <h2 class="text-center">Pending Tasks ◻️</h2>
@@ -41,7 +41,9 @@ import ModalVerticalVue from "../components/ModalVertical.vue";
 import { storeToRefs } from "pinia";
 import SideBar from "../components/SideBar.vue";
 import TaskList from "../components/TaskList.vue";
-import { ref, onUpdated, onMounted } from "vue";
+import { ref, onMounted } from "vue";
+import Task from "../interfaces/Task";
+import generateRandomTaskId from "../utils/idUtils";
 
 onMounted(() => {
   fethAllTasks();
@@ -51,9 +53,22 @@ const userStore = useUserStore();
 const taskStore = useTaskStore();
 
 const { tasks } = storeToRefs(taskStore);
+
 let showModal = ref(false);
 let modalHeader = ref(null);
 let modalBody = ref(null);
+
+const createTask = async (taskTitle) => {
+  const { userId } = storeToRefs(userStore);
+  const newTask = new Task(
+    generateRandomTaskId(),
+    taskTitle,
+    false,
+    userId.value
+  );
+
+  await taskStore.createTask(newTask);
+};
 
 const deleteTask = async (task) => {
   try {
