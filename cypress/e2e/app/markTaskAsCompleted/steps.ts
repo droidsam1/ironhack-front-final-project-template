@@ -16,11 +16,18 @@ And("I click the corresponding done button to the task", () => {
     .parent()
     .find(`[data-test-done-task-button]`)
     .click();
+  waitForApiAResponse();
 });
 
 Then(
   "I expect to see that my task has immediately been moved to the completed section",
   () => {
-    //TODO create a completed section
+    locateSelector("task-list-pending")
+      .find(`[data-test-task-list]`)
+      .should("not.contain", taskTitle);
+
+    locateSelector("task-list-completed")
+      .find(`[data-test-task-list]`)
+      .should("contain", taskTitle);
   }
 );

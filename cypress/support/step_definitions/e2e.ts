@@ -11,5 +11,4 @@ const loginWithTestingUser = () => {
   locateSelector("login-button").click();
 };
 
-
 export { locateSelector, clickThe, loginWithTestingUser };

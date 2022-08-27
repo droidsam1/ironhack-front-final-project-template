@@ -8,13 +8,14 @@ export const useTaskStore = defineStore("tasks", {
     tasks: [],
   }),
   actions: {
-    async fetchTasks() {
+    async fetchTasks(userId) {
       const { data: tasks, error } = await supabase
         .from("tasks")
         .select("*")
+        .match({ user_id: userId })
         .order("id", { ascending: false });
       if (error) throw error;
-      if (tasks)
+      if (tasks) {
         this.tasks = tasks.map(
           (element) =>
             new Task(
@@ -24,6 +25,7 @@ export const useTaskStore = defineStore("tasks", {
               element.user_id
             )
         );
+      }
     },
     async createTask(task) {
       const { data, error } = await supabase.from("tasks").insert([
@@ -45,7 +47,7 @@ export const useTaskStore = defineStore("tasks", {
       const { data, error } = await supabase
         .from("tasks")
         .delete()
-        .match({ id: task.id });
+        .match({ id: taskToBeDeleted.id });
       if (error) {
         this.tasks = [...this.tasks, taskToBeDeleted];
         throw error;

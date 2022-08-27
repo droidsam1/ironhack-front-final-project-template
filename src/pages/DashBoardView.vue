@@ -1,11 +1,25 @@
 <template>
-  <div class="flex flex-start flex-col md:flex-row">
+  <div class="flex flex-start flex-col lg:flex-row">
     <aside class="left-0 top-0 md:h-screen p-4 mt-10">
       <SideBar />
     </aside>
-    <main class="flex-1 p-3 py-2">
-      <div>
-        <TaskList :tasks="tasks" @deleteTask="deleteTask" />
+    <main
+      class="flex-1 p-3 py-2 flex flex-col lg:flex-row justify-around mt-10"
+    >
+      <div data-test-task-list-pending>
+        <h2 class="text-center">Pending Tasks ◻️</h2>
+        <TaskList
+          :tasks="[...tasks.filter((t) => !t.isCompleted)]"
+          @deleteTask="deleteTask"
+        />
+      </div>
+
+      <div data-test-task-list-completed class="md:mt-0 mt-10">
+        <h2 class="text-center">Completed Tasks ✅</h2>
+        <TaskList
+          :tasks="[...tasks.filter((t) => t.isCompleted)]"
+          @deleteTask="deleteTask"
+        />
       </div>
     </main>
     <ModalVerticalVue
@@ -53,7 +67,7 @@ const deleteTask = async (task) => {
 
 const fethAllTasks = async () => {
   try {
-    await taskStore.fetchTasks();
+    await taskStore.fetchTasks(userStore.userId);
   } catch (error) {
     showModal.value = true;
     modalHeader.value = " ❌Error";

@@ -1,7 +1,7 @@
 <template>
   <div v-if="task && task.title">
     <div
-      class="card m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200 flex flex-row items-center justify-between"
+      class="min-width-400 card m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200 flex flex-row items-center justify-between"
     >
       <p
         class="font-light font-mono text-sm text-gray-700 hover:text-gray-900 transition-all duration-200 ml-2"
@@ -50,4 +50,8 @@ function deleteTask() {
 }
 </script>
 
-<style></style>
+<style scoped>
+.min-width-400 {
+  min-width: 400px;
+}
+</style>

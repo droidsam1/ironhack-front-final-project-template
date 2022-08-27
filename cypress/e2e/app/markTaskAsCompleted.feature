@@ -6,4 +6,4 @@ Feature: Mark a task as complete
     Scenario: As a logged-in user I want to mark a task as complete
         When I locate the task I'd like to mark as complete
         And I click the corresponding done button to the task
-     Then I expect to see that my task has immediately been moved to the completed section
+        Then I expect to see that my task has immediately been moved to the completed section
