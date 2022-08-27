@@ -27,7 +27,7 @@ const createASampleTask = (taskTitle: string) => {
   waitForApiAResponse();
 };
 
-const markTaskAsDone = (taskTitle: string) => {
+const toggleDoneTask = (taskTitle: string) => {
   locateSelector("task-list")
     .contains(taskTitle)
     .parent()
@@ -41,12 +41,23 @@ const checkTaskIsCompleted = (taskTitle: string) => {
     .should("contain", taskTitle);
 };
 
+const theCompletedTaskSection = () => {
+  return locateSelector("task-list-completed").find(`[data-test-task-list]`);
+};
+
+const theInCompletedTaskSection = () => {
+  return locateSelector("task-list-pending").find(`[data-test-task-list]`);
+};
+
 export {
   locateSelector,
   clickThe,
   loginWithTestingUser,
   loginIntoApp,
   createASampleTask,
-  markTaskAsDone,
+  toggleDoneTask as markTaskAsDone,
+  toggleDoneTask as markTaskAsIncomplete,
   checkTaskIsCompleted,
+  theCompletedTaskSection,
+  theInCompletedTaskSection,
 };
