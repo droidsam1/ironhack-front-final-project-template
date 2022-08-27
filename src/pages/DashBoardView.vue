@@ -12,6 +12,7 @@
           :tasks="[...tasks.filter((t) => !t.isCompleted)]"
           @deleteTask="deleteTask"
           @toggleTaskCompleted="toggleTaskCompleted"
+          @editTask="editTask"
         />
       </div>
 
@@ -21,6 +22,7 @@
           :tasks="[...tasks.filter((t) => t.isCompleted)]"
           @deleteTask="deleteTask"
           @toggleTaskCompleted="toggleTaskCompleted"
+          @editTask="editTask"
         />
       </div>
     </main>
@@ -95,6 +97,17 @@ const fethAllTasks = async () => {
 const toggleTaskCompleted = async (task) => {
   try {
     await taskStore.toggleTaskCompleted(task);
+  } catch (error) {
+    showModal.value = true;
+    modalHeader.value = " ❌Error";
+    modalBody.value =
+      "An error ocurred while trying to update the task, please try again later ";
+  }
+};
+
+const editTask = async (task) => {
+  try {
+    await taskStore.editTask(task);
   } catch (error) {
     showModal.value = true;
     modalHeader.value = " ❌Error";

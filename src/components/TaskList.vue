@@ -11,6 +11,7 @@
       :task="task"
       @deleteTask="deleteTask"
       @toggleTaskCompleted="toggleTaskCompleted"
+      @editTask="editTask"
     />
   </div>
 </template>
@@ -21,7 +22,7 @@ const props = defineProps({
   tasks: Array,
 });
 
-const emit = defineEmits(["deleteTask", "toggleTaskCompleted"]);
+const emit = defineEmits(["deleteTask", "toggleTaskCompleted", "editTask"]);
 
 function deleteTask(task) {
   emit("deleteTask", task);
@@ -29,6 +30,10 @@ function deleteTask(task) {
 
 const toggleTaskCompleted = (task) => {
   emit("toggleTaskCompleted", task);
+};
+
+const editTask = (task) => {
+  emit("editTask", task);
 };
 </script>
 

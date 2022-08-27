@@ -54,20 +54,21 @@ export const useTaskStore = defineStore("tasks", {
       }
     },
     async toggleTaskCompleted(task) {
+      this.editTask(task);
+    },
+    async editTask(task) {
       const taskToBeUpdated = task;
 
       console.log(taskToBeUpdated);
 
       const { data, error } = await supabase
         .from("tasks")
-        .update({ is_complete: taskToBeUpdated.isCompleted })
+        .update({
+          is_complete: taskToBeUpdated.isCompleted,
+          title: taskToBeUpdated.title,
+        })
         .match({ id: taskToBeUpdated.id });
       if (error) throw error;
     },
-
-    // Hacer POST
-    // Hacer el PUT (edit)
-    // Hacer el delete
-    // Hacer el PUT (cambiar entre completada y pendiente)
   },
 });

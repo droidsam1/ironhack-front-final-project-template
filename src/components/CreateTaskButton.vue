@@ -11,7 +11,7 @@
     <ModalTask
       @submit="createTask"
       @close="showInput = !showInput"
-      v-show="showInput"
+      v-if="showInput"
     />
   </div>
 </template>

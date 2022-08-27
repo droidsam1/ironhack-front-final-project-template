@@ -28,11 +28,15 @@ const createASampleTask = (taskTitle: string) => {
 };
 
 const toggleDoneTask = (taskTitle: string) => {
-  locateSelector("task-list")
-    .contains(taskTitle)
-    .parent()
-    .find(`[data-test-done-task-button]`)
-    .click();
+  locateTheTask(taskTitle).find(`[data-test-done-task-button]`).click();
+};
+
+const clickTheEditButton = (taskTitle: string) => {
+  locateTheTask(taskTitle).find(`[data-test-edit-task-button]`).click();
+};
+
+const locateTheTask = (taskTitle: string) => {
+  return locateSelector("task-list").contains(taskTitle).parent();
 };
 
 const checkTaskIsCompleted = (taskTitle: string) => {
@@ -60,4 +64,6 @@ export {
   checkTaskIsCompleted,
   theCompletedTaskSection,
   theInCompletedTaskSection,
+  clickTheEditButton,
+  locateTheTask,
 };
