@@ -54,7 +54,6 @@ And("I click the link provided in the email", () => {
 });
 
 Then("I expect to be logged in to the app", () => {
-  waitForApiAResponse();
   //TODO: to perform this step the following is needed:
   //* delete the user when finish
   //* be able to obtain the generated mail and use it to confirm user
