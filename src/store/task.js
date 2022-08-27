@@ -53,6 +53,18 @@ export const useTaskStore = defineStore("tasks", {
         throw error;
       }
     },
+    async toggleTaskCompleted(task) {
+      const taskToBeUpdated = task;
+
+      console.log(taskToBeUpdated);
+
+      const { data, error } = await supabase
+        .from("tasks")
+        .update({ is_complete: taskToBeUpdated.isCompleted })
+        .match({ id: taskToBeUpdated.id });
+      if (error) throw error;
+    },
+
     // Hacer POST
     // Hacer el PUT (edit)
     // Hacer el delete

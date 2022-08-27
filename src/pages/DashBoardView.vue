@@ -11,6 +11,7 @@
         <TaskList
           :tasks="[...tasks.filter((t) => !t.isCompleted)]"
           @deleteTask="deleteTask"
+          @toggleTaskCompleted="toggleTaskCompleted"
         />
       </div>
 
@@ -19,6 +20,7 @@
         <TaskList
           :tasks="[...tasks.filter((t) => t.isCompleted)]"
           @deleteTask="deleteTask"
+          @toggleTaskCompleted="toggleTaskCompleted"
         />
       </div>
     </main>
@@ -42,7 +44,6 @@ import TaskList from "../components/TaskList.vue";
 import { ref, onUpdated, onMounted } from "vue";
 
 onMounted(() => {
-  console.log("loading user tasks");
   fethAllTasks();
 });
 
@@ -76,7 +77,16 @@ const fethAllTasks = async () => {
   }
 };
 
-//TODO cambiar esta llamada para esperar a tener un usuario?
+const toggleTaskCompleted = async (task) => {
+  try {
+    await taskStore.toggleTaskCompleted(task);
+  } catch (error) {
+    showModal.value = true;
+    modalHeader.value = " ❌Error";
+    modalBody.value =
+      "An error ocurred while trying to update the task, please try again later ";
+  }
+};
 </script>
 
 <style scoped></style>

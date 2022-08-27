@@ -10,6 +10,7 @@
       v-bind:key="task.id"
       :task="task"
       @deleteTask="deleteTask"
+      @toggleTaskCompleted="toggleTaskCompleted"
     />
   </div>
 </template>
@@ -20,11 +21,15 @@ const props = defineProps({
   tasks: Array,
 });
 
-const emit = defineEmits(["deleteTask"]);
+const emit = defineEmits(["deleteTask", "toggleTaskCompleted"]);
 
 function deleteTask(task) {
   emit("deleteTask", task);
 }
+
+const toggleTaskCompleted = (task) => {
+  emit("toggleTaskCompleted", task);
+};
 </script>
 
 <style></style>

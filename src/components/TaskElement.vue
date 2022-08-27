@@ -14,6 +14,7 @@
             data-test-done-task-button
             v-model="task.isCompleted"
             :checked="task.isCompleted"
+            @click="toggleTaskCompleted"
             id="green-checkbox"
             type="checkbox"
             value=""
@@ -43,11 +44,16 @@ import Task from "../interfaces/Task";
 const props = defineProps({
   task: Task,
 });
-const emit = defineEmits(["deleteTask"]);
+const emit = defineEmits(["deleteTask", "toggleTaskCompleted"]);
 
 function deleteTask() {
   emit("deleteTask", props.task);
 }
+
+const toggleTaskCompleted = () => {
+  props.task.isCompleted = !props.task.isCompleted;
+  emit("toggleTaskCompleted", props.task);
+};
 </script>
 
 <style scoped>
