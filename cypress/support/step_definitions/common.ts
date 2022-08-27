@@ -1,6 +1,6 @@
 import { Given, When } from "@badeball/cypress-cucumber-preprocessor";
-import { loginWithTestingUser, locateSelector } from "./e2e";
-import { interceptApiCall, waitForApiAResponse } from "./supabaseApi";
+import { loginWithTestingUser, locateSelector } from "./helpers/actions";
+import { interceptApiCall, waitForApiAResponse } from "./helpers/supabaseApi";
 import aSampleTaskTitle from "../fixtures/TaskFixtures";
 
 Given("I am logged in( to the app)", async () => {

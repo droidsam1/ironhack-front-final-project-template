@@ -8,11 +8,11 @@ import {
 import {
   clickThe,
   locateSelector,
-} from "../../../support/step_definitions/e2e";
+} from "../../../support/step_definitions/helpers/actions";
 import {
   interceptApiCall,
   waitForApiAResponse,
-} from "../../../support/step_definitions/supabaseApi";
+} from "../../../support/step_definitions/helpers/supabaseApi";
 
 const { visit } = cy;
 
