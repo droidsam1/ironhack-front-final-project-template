@@ -26,6 +26,10 @@ const routes = [
     name: "dashboard",
     component: DashBoardView,
   },
+  {
+    path: "/*",
+    component: 404,
+  },
 ];
 
 const router = createRouter({
